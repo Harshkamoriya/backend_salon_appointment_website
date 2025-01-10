@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import User from '../models/user.js';
 import blacklistedTokens from '../models/blacklistedTokens.js';
 
 const signup = async (req, res) => {

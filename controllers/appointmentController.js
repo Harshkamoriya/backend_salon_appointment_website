@@ -1,10 +1,10 @@
 import  Appointment from "../models/Appointment.js";
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
-import Service from "../models/service.js";
-import User from "../models/User.js";
-import { isValidObjectId } from "mongoose";
-// const Razorpay = require('razorpay');
+// import Service from "../models/service.js";
+// import User from "../models/User.js";
+// import { isValidObjectId } from "mongoose";
+// // const Razorpay = require('razorpay');
 
 const availableTimeSlots = [
     '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM',
