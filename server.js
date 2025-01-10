@@ -12,7 +12,7 @@ import cors from "cors"
 
 const app = express();
 app.use(cors({
-    origin: "https://salonease-oy0f.onrender.com" // Change this to your frontend URL
+    origin: "https://frontend-salon-appointment-website.vercel.app" // Change this to your frontend URL
 }));
 
 app.use(express.json());
