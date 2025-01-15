@@ -30,7 +30,7 @@ const signup = async (req, res) => {
         });
 
         // Set role as 'admin' if the email matches the salon owner's email
-        if (email === 'owner@example.com') {
+        if (email === 'admin@example.com') {
             newUser.role = 'admin';
         }
 
