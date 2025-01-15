@@ -175,7 +175,44 @@ const updatePassword = async (req, res) =>{
 }
 
 const logout =async ( req , res)=>{
-    console.log("request body in the logout function" , req.body);
+    console.log("request body in the logout function" , req.body)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ;
     const token = req.header('Authorization')?.replace('Bearer','');
     console.log(token);
     if(token){

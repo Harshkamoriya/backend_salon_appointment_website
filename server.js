@@ -1,51 +1,41 @@
-import express from"express";
+import express from "express";
 import connectDB from "./config/connection.js";
 import authRoutes from "./routes/authRoutes.js";
 import serviceRoutes from "./routes/services.js";
 import appointmentRoutes from "./routes/appointment.js";
-import paymentRoutes from "./routes/appointment.js"
-import dashroutes from "./routes/dashRoutes.js"
-
+import paymentRoutes from "./routes/appointment.js"; // Corrected import
+import dashRoutes from "./routes/dashRoutes.js";
 
 import dotenv from "dotenv";
-import cors from "cors"
-
-const app = express();
-const allowedOrigins = [
-    'http://localhost:5173', // Local development
-    'https://salonease.vercel.app', // Deployed frontend
-  ];
-  
-  app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, origin); // Dynamically set the origin
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true, // Allow credentials (cookies, etc.)
-  }));
-
-app.use(express.json());
-
-const port = 5000;
-
-
+import cors from "cors";
 
 dotenv.config();
 connectDB();
 
-app.use('/auth', authRoutes);
-app.use('/services', serviceRoutes);
-app.use('/appointment',appointmentRoutes );
-app.use('/payment', paymentRoutes);
-app.use('/dashboard', dashroutes );
+const app = express();
+const port = process.env.PORT || 5000; // Use environment variable for port
 
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.CLIENT_URL || "*", // Replace with your frontend's domain in production
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+app.use(cors(corsOptions));
 
+// Middleware
+app.use(express.json());
 
+// Routes
+app.use("/auth", authRoutes);
+app.use("/services", serviceRoutes);
+app.use("/appointment", appointmentRoutes);
+app.use("/payment", paymentRoutes);
+app.use("/dashboard", dashRoutes);
+
+// Start Server
 app.listen(port, () => {
-    console.log(`Server is listening on ${port}`);
-}).on('error', (err) => {
-    console.error(`Error starting server: ${err}`);
+  console.log(`Server is listening on port ${port}`);
+}).on("error", (err) => {
+  console.error(`Error starting server: ${err}`);
 });
