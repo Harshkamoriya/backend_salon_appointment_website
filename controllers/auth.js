@@ -35,7 +35,7 @@ const signup = async (req, res) => {
         }
 
         // Save the new user to the database
-        await newUser.save();
+        await newUser.save();  
 
         // Optionally generate a token for immediate login after signup
         const token = jwt.sign({ userId: newUser.id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
