@@ -11,9 +11,21 @@ import dotenv from "dotenv";
 import cors from "cors"
 
 const app = express();
-app.use(cors({
-    origin: "https://salonease.vercel.app" // Change this to your frontend URL
-}));
+const allowedOrigins = [
+    'http://localhost:5173', // Local development
+    'https://salonease.vercel.app', // Deployed frontend
+  ];
+  
+  app.use(cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin); // Dynamically set the origin
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allow credentials (cookies, etc.)
+  }));
 
 app.use(express.json());
 
